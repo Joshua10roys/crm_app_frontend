@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import * as yup from 'yup';
 import { useFormik } from "formik";
 import Grid from '@mui/material/Grid';
@@ -29,6 +30,7 @@ import { Server_URL } from '../../utils/urls';
 export default function AddUser() {
 
     const navigate = useNavigate();
+    const token = Cookies.get('auth_token');
     const [loading, setLoading] = useState(false);
     const { setSnackbar } = useContext(ContextSnackbar);
     const { user } = useContext(ContextUser);
@@ -78,7 +80,7 @@ export default function AddUser() {
                 fetch(`${Server_URL}/users/addUser`, {
                     method: "POST",
                     body: JSON.stringify(data),
-                    headers: { "Content-Type": "application/json" }
+                    headers: { "Content-Type": "application/json", "token": token }
                 })
                     .then(res => res.json())
                     .then((res) => {
