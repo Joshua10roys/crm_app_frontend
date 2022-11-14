@@ -126,7 +126,7 @@ export default function CreateService() {
                             setSnackbar({ open: true, message: res.msg, severity: 'success' });
                             navigate('/services');
                         } else if (res.status >= 300 && res.status < 400) {
-                            navigate(res.navigate);
+                            navigate(res.redirect);
                         } else if (res.status >= 400 && res.status < 500) {
                             setSnackbar({ open: true, message: res.msg, severity: 'warning' });
                         }

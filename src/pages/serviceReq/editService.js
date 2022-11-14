@@ -17,7 +17,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { FormControl, InputAdornment, OutlinedInput } from '@mui/material';
+import { FormControl } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -192,7 +192,7 @@ function ServiceRequestForm({ service, setSnackbar, navigate, token }) {
                             setSnackbar({ open: true, message: res.msg, severity: 'success' });
                             navigate('/services');
                         } else if (res.status >= 300 && res.status < 400) {
-                            navigate(res.navigate);
+                            navigate(res.redirect);
                         } else if (res.status >= 400 && res.status < 500) {
                             setSnackbar({ open: true, message: res.msg, severity: 'warning' });
                         }

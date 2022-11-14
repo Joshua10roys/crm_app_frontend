@@ -37,7 +37,6 @@ export default function EditContact() {
             .then(res => {
                 if (res.status >= 200 && res.status < 300) {
                     setContact(res.data);
-                    console.log(res.data);
                 } else if (res.status >= 400 && res.status < 500) {
                     setSnackbar({ open: true, message: res.msg, severity: 'error' });
                     navigate('/contacts');
@@ -124,7 +123,7 @@ function EditForm({ contact, setSnackbar, navigate, token }) {
                             navigate('/contacts');
                         } else if (res.status >= 300 && res.status < 400) {
                             setSnackbar({ open: true, message: res.msg, severity: 'error' });
-                            navigate(res.navigate);
+                            navigate(res.redirect);
                         } else if (res.status >= 400 && res.status < 500) {
                             setSnackbar({ open: true, message: res.msg, severity: 'error' });
                         }

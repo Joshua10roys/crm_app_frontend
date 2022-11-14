@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import '../../style/style.css'
 import { Server_URL } from '../../utils/urls.js';
-import { ContextAuth } from '../../context/authContext';
 import { ContextSnackbar } from '../../context/snackbarContext';
 import { ContextUser } from '../../context/userContext';
 import Typography from '@mui/material/Typography';
@@ -39,7 +38,6 @@ export default function Contacts() {
 
     const token = Cookies.get('auth_token');
     const navigate = useNavigate();
-    const { setAuth } = useContext(ContextAuth);
     const { setSnackbar } = useContext(ContextSnackbar);
     const { user } = useContext(ContextUser);
     const [contactsList, setContactsList] = useState([]);
@@ -204,7 +202,7 @@ function ContactTable({ contactsList, setContactsList, searchKeyWord, token, set
                 if (res.status >= 200 && res.status < 300) {
                     setContactsList([...contactsList, ...res.data]);
                 } else if (res.status >= 300 && res.status < 400) {
-                    navigate(res.navigate);
+                    navigate(res.redirect);
                 } else if (res.status >= 400 && res.status < 500) {
                     setSnackbar({ open: true, message: res.msg, severity: 'error' });
                 }

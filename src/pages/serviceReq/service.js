@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import '../../style/style.css'
 import { Server_URL } from '../../utils/urls.js';
-import { ContextAuth } from '../../context/authContext.js';
 import { ContextSnackbar } from '../../context/snackbarContext.js';
 import { ContextUser } from '../../context/userContext.js'
 import Typography from '@mui/material/Typography';
@@ -208,7 +207,7 @@ function LeadTable({ serviceReqList, setServiceReqList, navigate, searchKeyWord,
                     setServiceReqList([...serviceReqList, ...res.servies]);
                     setLoading(false);
                 } else if (res.status >= 300 && res.status < 400) {
-                    navigate(res.navigate);
+                    navigate(res.redirect);
                 } else if (res.status >= 400 && res.status < 500) {
                     setSnackbar({ open: true, message: res.msg, severity: 'error' });
                     setLoading(false);
@@ -231,7 +230,7 @@ function LeadTable({ serviceReqList, setServiceReqList, navigate, searchKeyWord,
                     setSnackbar({ open: true, message: res.msg, severity: 'success' });
                     loadData();
                 } else if (res.status >= 300 && res.status < 400) {
-                    navigate(res.navigate);
+                    navigate(res.redirect);
                 } else if (res.status >= 400 && res.status < 500) {
                     setSnackbar({ open: true, message: res.msg, severity: 'error' })
                 }

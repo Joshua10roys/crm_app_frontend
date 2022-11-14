@@ -1,9 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import '../../style/style.css';
 import { Server_URL } from '../../utils/urls';
-import { ContextAuth } from '../../context/authContext';
 import { ContextSnackbar } from '../../context/snackbarContext';
 import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -11,7 +9,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 export default function Dashboard() {
 
-    const navigate = useNavigate();
     const token = Cookies.get('auth_token');
     const { setSnackbar } = useContext(ContextSnackbar);
     const [lead, setLead] = useState();

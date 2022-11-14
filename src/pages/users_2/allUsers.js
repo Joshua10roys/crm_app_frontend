@@ -59,8 +59,11 @@ export default function AllUsers() {
         })
             .then(res => res.json())
             .then(res => {
-                if (res.status === 201) { setUsersList(res.list) };
-                if (res.status === 401) { setSnackbar({ open: true, message: res.msg, severity: 'error' }) }
+                if (res.status >= 200 && res.status < 300) {
+                    setUsersList(res.list)
+                } else if (res.status === 401) {
+                    setSnackbar({ open: true, message: res.msg, severity: 'error' })
+                }
             })
             .catch(err => console.log(err))
     }
@@ -70,7 +73,7 @@ export default function AllUsers() {
         try {
             fetch(`${Server_URL}/users/delete/${deleteId}`, {
                 method: "DELETE",
-                headers: { "auth_token": token }
+                headers: { "token": token }
             })
                 .then(res => res.json())
                 .then(res => {
@@ -78,7 +81,7 @@ export default function AllUsers() {
                         setSnackbar({ open: true, message: res.msg, severity: 'success' });
                         loadData();
                     } else if (res.status >= 300 && res.status < 400) {
-                        navigate(res.navigate);
+                        navigate(res.redirect);
                     } else if (res.status >= 400 && res.status < 500) {
                         setSnackbar({ open: true, message: res.msg, severity: 'error' });
                     }

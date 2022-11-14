@@ -3,7 +3,7 @@ import { Server_URL } from '../../utils/urls.js';
 import { ContextSnackbar } from '../../context/snackbarContext.js';
 import { ContextAuth } from '../../context/authContext.js';
 import { ContextUser } from '../../context/userContext.js';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { useFormik } from "formik";

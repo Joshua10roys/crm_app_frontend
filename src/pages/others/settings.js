@@ -1,9 +1,6 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import '../../style/style.css';
-import { ContextAuth } from '../../context/authContext.js';
-import { ContextSnackbar } from '../../context/snackbarContext.js';
 import { ContextUser } from '../../context/userContext.js';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -16,8 +13,6 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 export default function Settings() {
 
     const navigate = useNavigate();
-    const { setAuth } = useContext(ContextAuth);
-    const { setSnackbar } = useContext(ContextSnackbar);
     const { user } = useContext(ContextUser);
 
     return (

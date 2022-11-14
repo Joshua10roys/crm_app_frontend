@@ -89,7 +89,7 @@ export default function AddUser() {
                         if (res.status >= 200 && res.status < 300) {
                             setSnackbar({ open: true, message: res.msg, severity: 'success' });
                         } else if (res.status >= 300 && res.status < 400) {
-                            navigate(res.navigate);
+                            navigate(res.redirect);
                         } else if (res.status >= 400 && res.status < 500) {
                             setSnackbar({ open: true, message: res.msg, severity: 'error' });
                         }

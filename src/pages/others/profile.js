@@ -2,7 +2,6 @@ import '../../style/style.css';
 import { Server_URL } from '../../utils/urls.js';
 import { ContextSnackbar } from '../../context/snackbarContext.js';
 import { ContextUser } from '../../context/userContext.js';
-import { ContextAuth } from '../../context/authContext.js';
 import * as yup from 'yup';
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -51,7 +50,6 @@ function UserDetails({ user, setUser }) {
     const [loading, setLoading] = useState(false);
     const [change, setChange] = useState(false);
     const { setSnackbar } = useContext(ContextSnackbar);
-    const { setAuth } = useContext(ContextAuth);
 
     const formik = useFormik({
 
@@ -111,11 +109,11 @@ function UserDetails({ user, setUser }) {
                             setSnackbar({ open: true, message: res.msg, severity: 'success' });
                             setUser(res.user);
                         }
-                        else if (res.status >= 400 && res.status < 500) {
+                        else if (res.status >= 300 && res.status < 400) {
                             navigate(res.redirect);
                         }
-                        else {
-                            setSnackbar({ open: true, message: 'Something went wrong.\nPlease try again', severity: 'warning' });
+                        else if (res.status >= 400 && res.status < 500) {
+                            setSnackbar({ open: true, message: res.msg, severity: 'error' });
                         }
                     })
             } catch (error) {
@@ -331,14 +329,14 @@ function UserDetails({ user, setUser }) {
                     Change Password
                 </Button>
 
-                {change ? <UserCredentials user={user} token={token} setSnackbar={setSnackbar} /> : ''}
+                {change ? <UserCredentials user={user} navigate={navigate} token={token} setSnackbar={setSnackbar} /> : ''}
 
             </Paper></>
     )
 }
 
 
-function UserCredentials({ user, token, setSnackbar }) {
+function UserCredentials({ user, navigate, token, setSnackbar }) {
 
     const [loading, setLoading] = useState(false);
 
@@ -382,10 +380,13 @@ function UserCredentials({ user, token, setSnackbar }) {
                     .then((res) => {
                         resetForm(value);
                         setLoading(false);
-                        if (res.status === 200) {
+                        if (res.status >= 200 && res.status < 300) {
                             setSnackbar({ open: true, message: res.msg, severity: 'success' });
                         }
-                        else if (res.status === 400) {
+                        else if (res.status >= 300 && res.status < 400) {
+                            navigate(res.redirect);
+                        }
+                        else if (res.status >= 400 && res.status < 500) {
                             setSnackbar({ open: true, message: res.msg, severity: 'error' });
                         }
                         else {
