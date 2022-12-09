@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useContext, useEffect } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -41,7 +41,6 @@ import EditService from './pages/serviceReq/editService.js';
 
 export default function App() {
 
-  const navigate = useNavigate();
   const { auth, setAuth } = useContext(ContextAuth);
   const { user, setUser } = useContext(ContextUser);
   const { setSnackbar } = useContext(ContextSnackbar);
@@ -55,7 +54,6 @@ export default function App() {
       { auth && setSnackbar({ open: true, message: 'Session Expired', severity: 'error' }) }
       setAuth(false);
       localStorage.clear();
-      navigate('/user/login');
     }
   }, [Cookies.get('auth_token')])
 

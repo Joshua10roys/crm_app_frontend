@@ -1,1 +1,1 @@
-export const Server_URL = "https://app-crm-project.herokuapp.com";
+export const Server_URL = 'https://crm-backend-h7mc.onrender.com';
