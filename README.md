@@ -12,11 +12,11 @@
 ***
 ## Demo Dredentials
 
-**Username:** demo01@mail.in
+**Username:** demo01@mail.in  
 **Password:** 00demo01
 
 ***
 ## Links
 
-**Frontend ULR: **[Frontend ULR](https://delightful-chebakia-cc2aef.netlify.app)
+**Frontend ULR: **[Frontend ULR](https://delightful-chebakia-cc2aef.netlify.app)  
 **Backend Repo. ULR: ** [Backend Repo.](https://github.com/Joshua10roys/crm_app_backend)
