@@ -18,5 +18,5 @@
 ***
 ## Links
 
-[Frontend ULR](https://delightful-chebakia-cc2aef.netlify.app)
-[Backend Repo.](https://github.com/Joshua10roys/crm_app_backend target="_blank")
+[Frontend ULR](https://delightful-chebakia-cc2aef.netlify.app)  
+[Backend Repo.](https://github.com/Joshua10roys/crm_app_backend)  
